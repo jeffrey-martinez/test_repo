@@ -71,9 +71,9 @@ view: jan_six_seventeen {
     sql: ${TABLE}.label ;;
   }
 
-  dimension: length {
+  dimension: duration {
     type: string
-    sql: ${TABLE}.length ;;
+    sql: TO_CHAR(${TABLE}.length) ;;
   }
 
   dimension: location {
