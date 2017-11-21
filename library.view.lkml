@@ -22,9 +22,16 @@ view: library {
     sql: ${TABLE}.bit_rate ;;
   }
 
-  dimension: bpm {
+  dimension: itunes_bpm {
     type: number
     sql: ${TABLE}.bpm ;;
+  }
+
+  dimension: normalized_bpm {
+    type:  number
+    sql: CASE WHEN ${itunes_bpm} < 68 THEN 2*${itunes_bpm}
+    WHEN ${itunes_bpm} > 135 THEN CEILING(${itunes_bpm}/2)
+    ELSE ${itunes_bpm} END;;
   }
 
   dimension: comments {
@@ -77,8 +84,8 @@ view: library {
     sql: ${TABLE}.name ;;
   }
 
-  dimension: plays {
-    type: number
+  measure: itunes_plays {
+    type: sum
     sql: ${TABLE}.plays ;;
   }
 
