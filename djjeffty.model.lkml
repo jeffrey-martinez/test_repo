@@ -17,3 +17,5 @@ explore: library {
     sql_on: ${library.name} = ${jan_six_seventeen.name} AND ${library.artist} = ${jan_six_seventeen.artist} ;;
   }
 }
+
+explore: gig_010315 {}

@@ -23,6 +23,7 @@ view: library {
   }
 
   dimension: itunes_bpm {
+    hidden: yes
     type: number
     sql: ${TABLE}.bpm ;;
   }
