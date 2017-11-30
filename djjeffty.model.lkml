@@ -10,6 +10,8 @@ week_start_day: sunday
 # NOTE: please see https://looker.com/docs/r/sql/bigquery?version=5.0
 # NOTE: for BigQuery specific considerations
 
+explore: library_20171127 {}
+
 explore: library {
   join: jan_six_seventeen {
     type: left_outer
@@ -19,3 +21,5 @@ explore: library {
 }
 
 explore: gig_010315 {}
+
+explore: eventcalendar {}
