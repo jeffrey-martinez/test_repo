@@ -1,9 +1,23 @@
 view: gig_2016_12_09_ {
-  sql_table_name: IKYL.gig_2016_12_09_ ;;
+  derived_table: {
+    sql: SELECT ROW_NUMBER() OVER() playlistid, * FROM `lkr-thesis-project.IKYL.gig_2016_12_09_`  ;;
+  }
+
+  # sql_table_name: IKYL.gig_2016_12_09_ ;;
 
   dimension: album {
     type: string
     sql: ${TABLE}.album ;;
+  }
+
+  dimension: playlist_id {
+    type: number
+    sql: ${TABLE}.playlistid ;;
+  }
+
+  dimension: gig_id {
+    type: string
+    sql: (SELECT ${name} FROM IKYL.${TABLE} LIMIT 1) ;;
   }
 
   dimension: artist {
@@ -17,6 +31,7 @@ view: gig_2016_12_09_ {
   }
 
   dimension: bpm {
+    label: "Beats Per Minute"
     type: number
     sql: ${TABLE}.bpm ;;
   }

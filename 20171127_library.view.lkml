@@ -1,5 +1,13 @@
 view: library_20171127 {
-  sql_table_name: IKYL.`20171127_Library` ;;
+  derived_table: {
+    sql: SELECT *
+FROM (
+  SELECT *,
+      ROW_NUMBER() OVER (PARTITION BY name, artist) row_number
+  FROM `lkr-thesis-project.IKYL.20171127_Library`)
+WHERE row_number = 1 ;;
+  }
+  # sql_table_name: IKYL.`20171127_Library` ;;
 
   dimension: id {
     primary_key: yes
