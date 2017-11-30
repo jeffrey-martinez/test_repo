@@ -62,6 +62,7 @@ view: comb_gigs_dec16jan17 {
 
           )
        ;;
+    persist_for: "24 hours"
   }
 
   dimension: overallid {
