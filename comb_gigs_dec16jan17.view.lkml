@@ -36,9 +36,6 @@ view: comb_gigs_dec16jan17 {
         (SELECT PARSE_DATE("%D",(SELECT name FROM `lkr-thesis-project.IKYL.gig_2017_01_06_` LIMIT 1)) gig_date,
           (SELECT COUNT(*) FROM `lkr-thesis-project.IKYL.gig_2017_01_06_`) songcount, ROW_NUMBER() OVER() playlistid, * FROM `lkr-thesis-project.IKYL.gig_2017_01_06_`)
           UNION ALL
-        (SELECT PARSE_DATE("%D",(SELECT name FROM `lkr-thesis-project.IKYL.gig_2017_01_06_` LIMIT 1)) gig_date,
-          (SELECT COUNT(*) FROM `lkr-thesis-project.IKYL.gig_2017_01_06_`) songcount, ROW_NUMBER() OVER() playlistid, * FROM `lkr-thesis-project.IKYL.gig_2017_01_06_`)
-          UNION ALL
         (SELECT PARSE_DATE("%D",(SELECT name FROM `lkr-thesis-project.IKYL.gig_2017_01_07_` LIMIT 1)) gig_date,
           (SELECT COUNT(*) FROM `lkr-thesis-project.IKYL.gig_2017_01_07_`) songcount, ROW_NUMBER() OVER() playlistid, * FROM `lkr-thesis-project.IKYL.gig_2017_01_07_`)
           UNION ALL
@@ -63,7 +60,7 @@ view: comb_gigs_dec16jan17 {
         (SELECT PARSE_DATE("%D",(SELECT name FROM `lkr-thesis-project.IKYL.gig_2017_01_28_` LIMIT 1)) gig_date,
           (SELECT COUNT(*) FROM `lkr-thesis-project.IKYL.gig_2017_01_28_`) songcount, ROW_NUMBER() OVER() playlistid, * FROM `lkr-thesis-project.IKYL.gig_2017_01_28_`)
 
-          );
+          )
        ;;
   }
 
