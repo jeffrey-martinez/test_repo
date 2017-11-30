@@ -1,6 +1,9 @@
 view: gig_2016_12_09_ {
   derived_table: {
-    sql: SELECT ROW_NUMBER() OVER() playlistid, * FROM `lkr-thesis-project.IKYL.gig_2016_12_09_`  ;;
+    sql: SELECT PARSE_DATE("%D",(SELECT ${name} FROM `lkr-thesis-project.IKYL.gig_2016_12_09_` LIMIT 1)) gig_date, (
+            SELECT COUNT(*) FROM `lkr-thesis-project.IKYL.gig_2016_12_09_`) songcount,
+            ROW_NUMBER() OVER() playlistid,
+            * FROM `lkr-thesis-project.IKYL.gig_2016_12_09_`  ;;
   }
 
   # sql_table_name: IKYL.gig_2016_12_09_ ;;
@@ -11,13 +14,32 @@ view: gig_2016_12_09_ {
   }
 
   dimension: playlist_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.playlistid ;;
   }
 
-  dimension: gig_id {
+  dimension: song_number {
+    type: number
+    sql: ${TABLE}.songcount ;;
+  }
+
+  dimension: playlist_position {
+    type: number
+    sql: ROUND(${playlist_id}*1.0/${song_number}, 4) ;;
+    value_format: "0.000"
+  }
+
+  dimension: playlist_tier {
+    type: tier
+    style: interval
+    tiers: [0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0]
+    sql: ${playlist_position} ;;
+  }
+
+  dimension: gig_date {
     type: string
-    sql: (SELECT ${name} FROM IKYL.${TABLE} LIMIT 1) ;;
+    sql: ${TABLE}.gig_date ;;
   }
 
   dimension: artist {

@@ -56,6 +56,7 @@ WHERE row_number = 1 ;;
   measure: energy {
     type: max
     sql: REGEXP_EXTRACT(${comments}, r"^[a-zA-Z0-9/]+ - ([a-zA-Z0-9]+$)") ;;
+    html: {{ rendered_value }} - {{ name._rendered_value }} by {{artist._rendered_value}}  ;;
   }
 
   dimension: date_added {

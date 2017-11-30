@@ -11,12 +11,24 @@ week_start_day: sunday
 # NOTE: for BigQuery specific considerations
 
 explore: library_20171127 {
+  label: "DJ Jeffty's Song Library"
   join: gig_2016_12_09_ {
     type: inner
     relationship: many_to_one
-    sql_on: COALESCE(${library_20171127.name}) =  ${gig_2016_12_09_.name} AND COALESCE(${library_20171127.artist}) = ${gig_2016_12_09_.artist} ;;
+    sql_on: ${library_20171127.name} =  ${gig_2016_12_09_.name}
+    AND ${library_20171127.artist} = ${gig_2016_12_09_.artist} ;;
+  }
+  join: gig_2016_12_10_ {
+    type: inner
+    relationship: many_to_one
+    sql_on: ${library_20171127.name} =  ${gig_2016_12_10_.name}
+    AND ${library_20171127.artist} = ${gig_2016_12_10_.artist} ;;
   }
 }
+
+explore: eventcal {}
+
+explore: comb_gigs_dec16jan17 {}
 
 # explore: library {
 #   join: jan_six_seventeen {
