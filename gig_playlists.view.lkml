@@ -83,5 +83,6 @@ view: gig_playlists {
   measure: count {
     type: count
     drill_fields: [id, name]
+    html: {{rendered_value}} | {{ name._rendered_value }} by {{artist._rendered_value}} ;;
   }
 }
