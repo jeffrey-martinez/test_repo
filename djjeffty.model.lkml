@@ -12,37 +12,20 @@ week_start_day: sunday
 
 explore: library_20171127 {
   label: "DJ Jeffty's Song Library"
-  join:  comb_gigs_dec16jan17 {
+  join:  gig_playlists {
     type: inner
     relationship: many_to_one
-    sql_on: ${library_20171127.name} =  ${comb_gigs_dec16jan17.name}
-      AND ${library_20171127.artist} = ${comb_gigs_dec16jan17.artist} ;;
+    sql_on: ${library_20171127.name} =  ${gig_playlists.name}
+      AND ${library_20171127.artist} = ${gig_playlists.artist} ;;
   }
-  join: eventcal {
+  join: calendar {
     type: inner
     relationship:  many_to_one
-    sql_on: ${comb_gigs_dec16jan17.gig_date} = ${eventcal.date_raw} ;;
+    sql_on: ${gig_playlists.gig_id_raw} = ${calendar.event_raw} ;;
+  }
   }
 
-  join: gig_2016_12_09_ {
-    type: inner
-    relationship: many_to_one
-    sql_on: ${library_20171127.name} =  ${gig_2016_12_09_.name}
-    AND ${library_20171127.artist} = ${gig_2016_12_09_.artist} ;;
-  }
-  join: gig_2016_12_10_ {
-    type: inner
-    relationship: many_to_one
-    sql_on: ${library_20171127.name} =  ${gig_2016_12_10_.name}
-    AND ${library_20171127.artist} = ${gig_2016_12_10_.artist} ;;
-  }
-}
 
-explore: calendar {}
-
-explore: eventcal {}
-
-explore: comb_gigs_dec16jan17 {}
 
 # explore: library {
 #   join: jan_six_seventeen {

@@ -27,6 +27,12 @@ view: calendar {
     sql: ${TABLE}.booked_on ;;
   }
 
+  dimension: latlong {
+      type: location
+      sql_latitude: ${TABLE}.latitude ;;
+      sql_longitude:${TABLE}.longitude ;;
+    }
+
   dimension: client {
     type: string
     sql: ${TABLE}.client ;;
@@ -88,7 +94,7 @@ view: calendar {
   }
 
   dimension: location {
-    type: string
+    type: number
     sql: ${TABLE}.location ;;
   }
 

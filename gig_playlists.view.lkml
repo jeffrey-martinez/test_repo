@@ -57,6 +57,19 @@ view: gig_playlists {
     sql: ${TABLE}.playlist_id ;;
   }
 
+  dimension: playlist_position {
+    type: number
+    sql: ROUND(${playlist_id}*1.0/${totalsong}, 4) ;;
+    value_format: "0.000"
+  }
+
+  dimension: playlist_tier {
+    type: tier
+    style: interval
+    tiers: [0,0.25,0.5,0.75,1.0]
+    sql: ${playlist_position} ;;
+  }
+
   dimension: start_time {
     type: string
     sql: ${TABLE}.start_time ;;
