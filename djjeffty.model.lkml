@@ -12,6 +12,18 @@ week_start_day: sunday
 
 explore: library_20171127 {
   label: "DJ Jeffty's Song Library"
+  join:  comb_gigs_dec16jan17 {
+    type: inner
+    relationship: many_to_one
+    sql_on: ${library_20171127.name} =  ${comb_gigs_dec16jan17.name}
+      AND ${library_20171127.artist} = ${comb_gigs_dec16jan17.artist} ;;
+  }
+  join: eventcal {
+    type: inner
+    relationship:  many_to_one
+    sql_on: ${comb_gigs_dec16jan17.gig_date} = ${eventcal.date_raw} ;;
+  }
+
   join: gig_2016_12_09_ {
     type: inner
     relationship: many_to_one
@@ -25,6 +37,8 @@ explore: library_20171127 {
     AND ${library_20171127.artist} = ${gig_2016_12_10_.artist} ;;
   }
 }
+
+explore: calendar {}
 
 explore: eventcal {}
 
