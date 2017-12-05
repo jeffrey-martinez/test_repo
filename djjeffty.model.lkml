@@ -10,19 +10,19 @@ week_start_day: sunday
 # NOTE: please see https://looker.com/docs/r/sql/bigquery?version=5.0
 # NOTE: for BigQuery specific considerations
 
-explore: library_20171127 {
+explore: no_dupelibrary {
   label: "DJ Jeffty's Song Library"
   join:  gig_playlists {
     type: inner
     relationship: many_to_one
-    sql_on: ${library_20171127.name} =  ${gig_playlists.name}
-      AND ${library_20171127.artist} = ${gig_playlists.artist} ;;
-  }
+    sql_on: ${no_dupelibrary.name} =  ${gig_playlists.name}
+      AND ${no_dupelibrary.artist} = ${gig_playlists.artist} ;;
+    }
   join: calendar {
     type: inner
     relationship:  many_to_one
-    sql_on: ${gig_playlists.gig_id_raw} = ${calendar.event_raw} ;;
-  }
+    sql_on: ${gig_playlists.gig_id_raw} = calendar.event_on ;;
+    }
   }
 
 
