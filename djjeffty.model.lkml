@@ -19,7 +19,7 @@ explore: no_dupelibrary {
       AND ${no_dupelibrary.artist} = ${gig_playlists.artist} ;;
     }
   join: calendar {
-    type: inner
+    type: full_outer
     relationship:  many_to_one
     sql_on: ${gig_playlists.gig_id_raw} = calendar.event_on ;;
     }

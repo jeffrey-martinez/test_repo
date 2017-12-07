@@ -55,6 +55,7 @@ view: calendar {
       date,
       week,
       month,
+      month_name,
       quarter,
       year
     ]
@@ -130,6 +131,7 @@ view: calendar {
 
   measure: count {
     type: count
-    drill_fields: [id]
+    html: {{rendered_value}}|| {{event_month_name._rendered_value}} ;;
+    drill_fields: [id, event_title, event_date, client]
   }
 }
