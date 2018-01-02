@@ -64,6 +64,11 @@ view: calendar {
     sql: ${TABLE}.event_on ;;
   }
 
+  dimension: event_id {
+    type: string
+    sql: ${TABLE}.event_id ;;
+  }
+
   dimension: event_title {
     type: string
     sql: ${TABLE}.event_title ;;
@@ -95,7 +100,7 @@ view: calendar {
   }
 
   dimension: location {
-    type: number
+    type: string
     sql: ${TABLE}.location ;;
   }
 
@@ -131,7 +136,7 @@ view: calendar {
 
   measure: count {
     type: count
-    html: {{rendered_value}}|| {{event_month_name._rendered_value}} ;;
+    # html: {{rendered_value}}|| {{event_month_name._rendered_value}} ;;
     drill_fields: [id, event_title, event_date, client]
   }
 }
