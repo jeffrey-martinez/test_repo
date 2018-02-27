@@ -47,8 +47,8 @@ view: no_dupelibrary {
 
   measure: energy {
     type: max
-    sql: REGEXP_EXTRACT(${comments}, r"^[a-zA-Z0-9/]+ - ([a-zA-Z0-9]+$)") ;;
-    html: {{ rendered_value }} - {{ name._rendered_value }} by {{artist._rendered_value}}  ;;
+    sql: CAST(REGEXP_EXTRACT(${comments}, r"^[a-zA-Z0-9/]+ - ([a-zA-Z0-9]+$)") as INT64) ;;
+    html: {{ name._rendered_value }} - {{rendered_value}} by {{artist._rendered_value}}  ;;
   }
 
   dimension: date_added {

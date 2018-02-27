@@ -8,8 +8,6 @@ explore: test {
   hidden: yes # IMPORTANT - keep explores hidden to avoid clutter
 }
 
-explore: stc {}
-
 view: test  {
   derived_table: {
     sql:

@@ -69,6 +69,12 @@ view: calendar {
     sql: ${TABLE}.event_id ;;
   }
 
+  dimension: event_double {
+    type: yesno
+    description: "Indicator of Two Events in One Day"
+    sql: CASE WHEN ENDS_WITH(${TABLE}.event_id, '1') OR ENDS_WITH(${TABLE}.event_id, '2') THEN TRUE ELSE FALSE END  ;;
+  }
+
   dimension: event_title {
     type: string
     sql: ${TABLE}.event_title ;;
