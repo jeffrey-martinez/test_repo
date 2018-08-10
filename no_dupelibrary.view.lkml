@@ -113,7 +113,7 @@ view: no_dupelibrary {
 
   measure: count {
     type: count
-    value_format: "[${year}>2005]$0.00;0.0"
+    # value_format: "[${year}>2005]$0.00;0.0"
     # approximate_threshold: 100000
     drill_fields: [id, name]
   }

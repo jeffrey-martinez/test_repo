@@ -17,14 +17,14 @@ view: gig_playlists {
     sql: ${TABLE}.bpm ;;
   }
 
-  dimension: deck {
-    type: number
-    sql: ${TABLE}.deck ;;
+  dimension: event_id {
+    type: string
+    sql: ${TABLE}.event_id_string ;;
   }
 
   dimension: duration {
     type: string
-    sql: ${TABLE}.duration ;;
+    sql: ${TABLE}.playtime ;;
   }
 
   dimension: end_time {

@@ -1,6 +1,11 @@
 view: stc {
   sql_table_name: IKYL.stc ;;
 
+
+  filter: liquid_filter {
+    type: string
+  }
+
   dimension: pkey {
     type: string
     primary_key: yes
@@ -11,6 +16,12 @@ view: stc {
   dimension: state {
     type: string
     sql: ${TABLE}.State ;;
+  }
+
+  dimension: case_when {
+    type: string
+    sql: CASE WHEN {% condition liquid_filter %} ${state} {% endcondition %} THEN "string"
+    ELSE "SORRY" END;;
   }
 
   dimension: typecount {
