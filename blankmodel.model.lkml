@@ -3,7 +3,8 @@ connection: "djthesis"
 include: "*.view.lkml"         # include all views in this project
 # include: "*.dashboard.lookml"  # include all dashboards in this project
 
-week_start_day: thursday
+week_start_day: tuesday
+
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.
 #
