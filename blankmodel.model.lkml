@@ -3,7 +3,6 @@ connection: "djthesis"
 include: "*.view.lkml"         # include all views in this project
 # include: "*.dashboard.lookml"  # include all dashboards in this project
 
-explore: dcourse_6810 {}
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.
 #

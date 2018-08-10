@@ -4,7 +4,7 @@ connection: "djthesis"
 include: "*.view"
 
 # include all the dashboards
-include: "*.dashboard"
+# include: "*.dashboard"
 week_start_day: sunday
 
 # NOTE: please see https://looker.com/docs/r/sql/bigquery?version=5.0
@@ -19,6 +19,7 @@ explore: no_dupelibrary {
       AND ${no_dupelibrary.artist} = ${gig_playlists.artist} ;;
     }
   join: calendar {
+    # fields: []
     type: full_outer
     relationship:  many_to_one
     sql_on: ${gig_playlists.gig_id_raw} = calendar.event_on ;;

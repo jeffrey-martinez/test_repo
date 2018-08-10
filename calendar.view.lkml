@@ -18,8 +18,10 @@ view: calendar {
       raw,
       date,
       week,
+      day_of_week,
       month,
       quarter,
+      quarter_of_year,
       year
     ]
     convert_tz: no
@@ -52,8 +54,15 @@ view: calendar {
     type: time
     timeframes: [
       raw,
+      hour,
+      minute,
+      second,
       date,
       week,
+      time,
+      day_of_week,
+      fiscal_month_num,
+      week_of_year,
       month,
       month_name,
       quarter,
@@ -63,6 +72,39 @@ view: calendar {
     datatype: date
     sql: ${TABLE}.event_on ;;
   }
+
+  dimension: created_financial_quarter_first_day {
+    group_label: "Created Date"
+    type: date
+    sql: DATE_TRUNC('w',DATEADD(w,1,DATEADD(day,-1,DATE_TRUNC('qtr', ${event_raw})))) ;;
+  }
+
+  dimension: 445_financial_month {
+    # datatype: date
+    group_label: "Created Date"
+    label: "Financial Month"
+    sql:
+    CASE WHEN ${event_week_of_year} = 1
+    AND ${event_raw} < ${created_financial_quarter_first_day}
+    OR ${event_week_of_year} = 1
+    AND ${event_raw} > DATEADD('y',-1,${event_raw})
+            THEN 'FM' || 12
+         WHEN ${event_week_of_year} between 1 AND 4 THEN 'FM ' || 1
+         WHEN ${event_week_of_year} between 5 AND 8 THEN 'FM ' || 2
+         WHEN ${event_week_of_year} between 9 AND 13 THEN 'FM ' || 3
+         WHEN ${event_week_of_year} between 14 AND 17 THEN 'FM ' || 4
+         WHEN ${event_week_of_year} between 18 AND 21 THEN 'FM ' || 5
+         WHEN ${event_week_of_year} between 22 AND 26 THEN 'FM ' || 6
+         WHEN ${event_week_of_year} between 27 AND 30 THEN 'FM ' || 7
+         WHEN ${event_week_of_year} between 31 AND 34 THEN 'FM ' || 8
+         WHEN ${event_week_of_year} between 35 AND 39 THEN 'FM ' || 9
+         WHEN ${event_week_of_year} between 40 AND 43 THEN 'FM ' || 10
+         WHEN ${event_week_of_year} between 44 AND 47 THEN 'FM ' || 11
+    ELSE 'FM' || 12
+    END ;;
+  }
+
+
 
   dimension: event_id {
     type: string
@@ -133,6 +175,12 @@ view: calendar {
   dimension: type {
     type: string
     sql: ${TABLE}.type ;;
+  }
+
+  dimension: Wedding {
+    type: yesno
+    sql: CASE WHEN ${TABLE}.type LIKE '%Wedding%' THEN TRUE
+    ELSE FALSE END;;
   }
 
   dimension: venue {
